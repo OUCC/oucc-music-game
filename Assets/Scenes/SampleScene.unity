@@ -814,6 +814,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c444676f92073af4db9cf042255fce08, type: 3}
+--- !u!1 &1383047481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8039330073695651538, guid: c444676f92073af4db9cf042255fce08, type: 3}
+  m_PrefabInstance: {fileID: 1383047480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1403878384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1786303364}
+  - component: {fileID: 1786303365}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1081,6 +1087,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1786303365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786303363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33a7e311ea694b40a0164418ae4f914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginalNote: {fileID: 1383047481}
+  LanePoint: {fileID: 2009536367}
 --- !u!1 &1822196737
 GameObject:
   m_ObjectHideFlags: 0
