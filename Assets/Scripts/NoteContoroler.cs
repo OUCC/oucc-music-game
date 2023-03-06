@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace OUCC.MusicGame
     public class NoteContoroler : MonoBehaviour
     {
         public float NoteVelocity;//ノーツの移動速度
+        public event EventHandler NoteMiss;//ノーツがタップされずにMissになった時に発行されるイベント
         // Start is called before the first frame update
         void Start()
         {
@@ -19,7 +21,10 @@ namespace OUCC.MusicGame
             //ノーツの移動処理
             this.gameObject.transform.position += Vector3.back * NoteVelocity;
             //ノーツのz座標が一定以上になれば画面から消えたとみなしイベントを発行
-            if (this.gameObject.transform.position.z < -1f) Debug.Log("Miss!");
+            if (this.gameObject.transform.position.z < -1f)
+            {
+                if (NoteMiss != null) NoteMiss(this,EventArgs.Empty);
+            }
         }
         /// <summary>
         /// ノーツを非表示にする関数
