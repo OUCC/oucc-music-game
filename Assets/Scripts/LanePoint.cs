@@ -16,18 +16,18 @@ namespace OUCC.MusicGame
         void Awake()
         {
             //ノーツを生成する位置のリストの更新
-            for(int i = 0; i < NoteLane.Count; i++) 
+            for (int i = 0; i < NoteLane.Count; i++)
             {
-                NoteLanePoint.Add(new Vector3(NoteLane[i].transform.position.x, NoteLane[i].transform.position.y,NoteMakePoint));
+                NoteLanePoint.Add(new Vector3(NoteLane[i].transform.position.x, NoteLane[i].transform.position.y, NoteMakePoint));
             }
             //ノーツを判定する位置の更新
-            NoteChekPoint=NoteCheker.transform.position.z;
+            NoteChekPoint = NoteCheker.transform.position.z;
         }
 
         // Update is called once per frame
         void Update()
         {
-        
+
         }
     }
 }

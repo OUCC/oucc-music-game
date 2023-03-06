@@ -8,11 +8,12 @@ namespace OUCC.MusicGame
     public class NoteContoroler : MonoBehaviour
     {
         public float NoteVelocity;//ノーツの移動速度
-        public event EventHandler NoteMiss;//ノーツがタップされずにMissになった時に発行されるイベント
+        public event Action<int> NoteMiss;//ノーツがタップされずにMissになった時に発行されるイベント
+        public int NoteID;//ノーツのID
         // Start is called before the first frame update
         void Start()
         {
-        
+
         }
 
         // Update is called once per frame
@@ -23,7 +24,7 @@ namespace OUCC.MusicGame
             //ノーツのz座標が一定以上になれば画面から消えたとみなしイベントを発行
             if (this.gameObject.transform.position.z < -1f)
             {
-                if (NoteMiss != null) NoteMiss(this,EventArgs.Empty);
+                if (NoteMiss != null) NoteMiss(NoteID);
             }
         }
         /// <summary>
