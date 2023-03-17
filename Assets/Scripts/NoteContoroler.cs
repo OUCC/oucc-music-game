@@ -17,7 +17,6 @@ namespace OUCC.MusicGame
         [NonSerialized]
         public float NoteEndTime;//ノーツがアウトラインをこえてからノーツが消えるまでの時間
         private float _noteNowTime;//ノーツがアウトラインをこえてから現在までの時間
-        private Transform _noteTransform;//ノーツのTransform、キャッシュしておく、しなくてもいいかも？
         private MeshRenderer _noteRenderer;//ノーツのRenderer、非表示にする用
         // Start is called before the first frame update
         void Start()
@@ -29,16 +28,15 @@ namespace OUCC.MusicGame
         /// </summary>
         public void NoteSet()
         {
-            _noteTransform = GetComponent<Transform>();
             _noteRenderer = GetComponent<MeshRenderer>();
         }
         // Update is called once per frame
         void Update()
         {
             //ノーツの移動処理
-            _noteTransform.position += Vector3.back * NoteVelocity;
+            transform.position += Vector3.back * NoteVelocity;
             //ノーツがレーンを超えてからの経過時間が一定以上になれば画面から消えたとみなしイベントを発行
-            if (_noteTransform.position.z <= NoteCheck) _noteNowTime += Time.deltaTime;
+            if (transform.position.z <= NoteCheck) _noteNowTime += Time.deltaTime;
             if (_noteNowTime >= NoteEndTime)
             {
                 if (NoteMiss != null) NoteMiss(NoteID);
