@@ -18,6 +18,7 @@ namespace OUCC.MusicGame
         public float NoteEndTime;//ノーツがアウトラインをこえてからノーツが消えるまでの時間
         private float _noteNowTime;//ノーツがアウトラインをこえてから現在までの時間
         private MeshRenderer _noteRenderer;//ノーツのRenderer、非表示にする用
+        bool _isNoteEnd;
         // Start is called before the first frame update
         void Start()
         {
@@ -29,10 +30,13 @@ namespace OUCC.MusicGame
         public void NoteSet()
         {
             _noteRenderer = GetComponent<MeshRenderer>();
+            _isNoteEnd = false;
         }
         // Update is called once per frame
         void Update()
         {
+            //ノーツが見えなくなったら早期リターン
+            if (_isNoteEnd) return;
             //ノーツの移動処理
             transform.position += Vector3.back * NoteVelocity;
             //ノーツがレーンを超えてからの経過時間が一定以上になれば画面から消えたとみなしイベントを発行
@@ -48,7 +52,7 @@ namespace OUCC.MusicGame
         public void NoteDestroy()
         {
             _noteRenderer.enabled = false;
-            this.enabled = false;
+            _isNoteEnd = true;
         }
     }
 }
