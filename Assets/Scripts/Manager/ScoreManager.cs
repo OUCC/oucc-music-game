@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace OUCC.MusicGame.Manager
@@ -41,6 +42,9 @@ namespace OUCC.MusicGame.Manager
             return _container.Notes;
         }
 
+        /// <summary>
+        /// 状態をリセットします
+        /// </summary>
         public void Reset()
         {
             _musicId = -1;
@@ -55,24 +59,64 @@ namespace OUCC.MusicGame.Manager
         /// 入力を受けた結果を返します
         /// 引数のtimeはミリ秒単位
         /// </summary>
-        public (int Id, Grade)[] OnTap(LanePosition lane, int time)
+        public (int Id, Grade) OnTap(LanePosition lane, int time)
         {
-            // TODO
-            return default;
+            const int width = 200;
+            var maxTime = time + width;
+            var minTime = time - width;
+            var targetNotes = _container.Notes
+                    .Where(n => n.StartTime > minTime && n.StartTime < maxTime && n.LanePosition == lane)
+                    .OrderBy(n => n.StartTime > time ? n.StartTime - time : time - n.StartTime)
+                    .FirstOrDefault();
+            if (targetNotes is null)
+            {
+                return (-1, Grade.None);
+            }
+            else
+            {
+                var diff = targetNotes.StartTime > time ? targetNotes.StartTime - time : time - targetNotes.StartTime;
+                var justGrade = diff switch
+                {
+                    <= 40 => Grade.Perfect,
+                    <= 80 => Grade.Great,
+                    <= 140 => Grade.Good,
+                    _ => Grade.Bad,
+                };
+
+                if (justGrade == Grade.Perfect || justGrade == Grade.Great)
+                {
+                    CurrentComboCount++;
+                }
+                else
+                {
+                    CurrentComboCount = 0;
+                }
+
+                CurrentScore += CalculateScore(justGrade);
+                return (targetNotes.Id, justGrade);
+            }
         }
 
+        /// <summary>
+        /// ミスをしたときの処理を行います
+        /// </summary>
         public Grade OnMiss(int noteId)
         {
             _container.Notes.First(n => n.Id == noteId).Grade = Grade.Miss;
+            CurrentComboCount = 0;
             return Grade.Miss;
         }
 
+        /// <summary>
+        /// スコアを再計算します
+        /// </summary>
         public int RecalculateCurrentScore()
         {
             CurrentScore = _container.Notes.Select(n => CalculateScore(n.Grade)).Sum();
             return CurrentScore;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private int CalculateScore(Grade grade)
         {
             return grade switch
