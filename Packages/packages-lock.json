@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.github.miyaji255.inspector-only-fields": {
+      "version": "https://github.com/miyaji255/InspectorOnlyFields.git?path=InspectorOnlyFields/Packages/InspectorOnlyFields",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e075d401a85d88d68599cc1865f49bab6822b3e0"
+    },
     "com.unity.collab-proxy": {
       "version": "2.0.1",
       "depth": 0,

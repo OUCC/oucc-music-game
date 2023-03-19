@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.github.miyaji255.inspector-only-fields": "https://github.com/miyaji255/InspectorOnlyFields.git?path=InspectorOnlyFields/Packages/InspectorOnlyFields",
     "com.unity.collab-proxy": "2.0.1",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.18",

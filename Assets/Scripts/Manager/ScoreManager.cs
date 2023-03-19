@@ -108,6 +108,36 @@ namespace OUCC.MusicGame.Manager
         }
 
         /// <summary>
+        /// それぞれの Grade の回数を取得します
+        /// </summary>
+        public (int Perfect, int Great, int Good, int Bad, int Miss) GetGradeCounts()
+        {
+            var counts = (0, 0, 0, 0, 0);
+            foreach (var item in _container.Notes)
+            {
+                switch (item.Grade)
+                {
+                    case Grade.Perfect:
+                        counts.Item1++;
+                        break;
+                    case Grade.Great:
+                        counts.Item2++;
+                        break;
+                    case Grade.Good:
+                        counts.Item3++;
+                        break;
+                    case Grade.Bad:
+                        counts.Item4++;
+                        break;
+                    case Grade.Miss:
+                        counts.Item5++;
+                        break;
+                }
+            }
+            return counts;
+        }
+
+        /// <summary>
         /// スコアを再計算します
         /// </summary>
         public int RecalculateCurrentScore()
