@@ -11,7 +11,7 @@ namespace OUCC.MusicGame.Manager
 
         private int _musicId;
 
-        private MusicInfoContainer _container;
+        private MusicNotesContainer _container;
 
         public int TotalScore { get; private set; }
 
@@ -35,7 +35,7 @@ namespace OUCC.MusicGame.Manager
         {
             var path = string.Empty;
             //TODO
-            _container = JsonUtility.FromJson<MusicInfoContainer>(null);
+            _container = JsonUtility.FromJson<MusicNotesContainer>(null);
             CurrentScore = 0;
             TotalScore = _container.Notes.Length * CalculateScore(Grade.Perfect);
 

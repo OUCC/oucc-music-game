@@ -3,8 +3,10 @@
 namespace OUCC.MusicGame.Manager
 {
     [Serializable]
-    public class MusicInfoContainer
+    public class MusicNotesContainer
     {
+        public MusicEntity Info;
+
         public NoteEntity[] Notes;
     }
 }
