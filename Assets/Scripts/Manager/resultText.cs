@@ -1,54 +1,58 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 namespace OUCC.MusicGame.Manager
 {
-    public class resultText : MonoBehaviour
+    public class ResultText : MonoBehaviour
     {
-        ScoreManager scoreManager = new ScoreManager();
+        //スコア表示
+        [SerializeField] private TextMeshProUGUI ScoreText;
+
+        //コンボ表示
+        [SerializeField] private TextMeshProUGUI ComboText;
+
+        //ランク表示
+        [SerializeField] private TextMeshProUGUI RankText;
+
+        //判定表示
+        [SerializeField] private TextMeshProUGUI PerfectText;
+        [SerializeField] private TextMeshProUGUI GreatText;
+        [SerializeField] private TextMeshProUGUI GoodText;
+        [SerializeField] private TextMeshProUGUI BadText;
+        [SerializeField] private TextMeshProUGUI MissText;
         
-        public TextMeshProUGUI scoreText , comboText , perfectText , greatText , goodText , badText , missText , rankText;
         // Start is called before the first frame update
         void Start()
         {
-            
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-            var Counts = scoreManager.GetGradeCounts();
-            perfectText.text = "perfect : " + Counts.Item1.ToString();
-            greatText.text = "great : " + Counts.Item2.ToString();
-            goodText.text = "good: " + Counts.Item3.ToString();
-            badText.text = "bad : " + Counts.Item4.ToString();
-            missText.text = "miss : " + Counts.Item5.ToString();
+            var counts = ScoreManager.Instance.GetGradeCounts();
+            PerfectText.text = "perfect : " + counts.Perfect.ToString();
+            GreatText.text = "great : " + counts.Great.ToString();
+            GoodText.text = "good: " + counts.Good.ToString();
+            BadText.text = "bad : " + counts.Bad.ToString();
+            MissText.text = "miss : " + counts.Miss.ToString();
 
             
-            int currentScore = scoreManager.CurrentScore;
-            int maxcombo = scoreManager.MaxCombo;
-            scoreText.text = "score  : " + currentScore.ToString();
-            comboText.text  = "combo : " + maxcombo.ToString();
+            var currentScore = ScoreManager.Instance.CurrentScore;
+            var maxcombo = ScoreManager.Instance.MaxCombo;
+            ScoreText.text = "score  : " + currentScore.ToString();
+            ComboText.text  = "combo : " + maxcombo.ToString();
 
         
-            string Rank = RankJudge();
-            rankText.text = Rank;
-        
+            string rank = RankJudge();
+            RankText.text = rank;
+            
         }
+        
 
         //Rankの決定
         public string RankJudge()
         {
-            int totalScore = scoreManager.TotalScore;
-            int currentScore = scoreManager.CurrentScore;
+            var totalScore = ScoreManager.Instance.TotalScore;
+            var currentScore = (float)ScoreManager.Instance.CurrentScore;
             var score_rate = currentScore/totalScore;
 
-             if (score_rate >= 0.9)
+            if (score_rate >= 0.9)
             {
                  return "S";
             }
