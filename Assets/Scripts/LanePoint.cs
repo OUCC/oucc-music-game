@@ -9,13 +9,21 @@ namespace OUCC.MusicGame
     {
         [SerializeField]
         private List<GameObject> _noteLane = new List<GameObject>();
+
+        /// <summary>
+        /// それぞれのノーツの判定位置
+        /// </summary>
         [NonSerialized]
         public List<Vector3> NoteLanePoint = new List<Vector3>();
 
         [SerializeField]
         private GameObject _noteCheker;
+        /// <summary>
+        /// ノーツの判定を行うZ座標
+        /// </summary>
         [NonSerialized]
-        public float NoteChekPoint;//ノーツの判定を行うZ座標
+        public float NoteChekPoint;
+
         // Start is called before the first frame update
         void Awake()
         {
@@ -26,12 +34,6 @@ namespace OUCC.MusicGame
             {
                 NoteLanePoint.Add(new Vector3(_noteLane[i].transform.position.x, _noteLane[i].transform.position.y, NoteChekPoint));
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }
