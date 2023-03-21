@@ -1,9 +1,8 @@
 {
-    "name": "Scripts",
-    "rootNamespace": "OUCC.MusicGame",
+    "name": "InputSystem",
+    "rootNamespace": "",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:d1b7693322e2bd1459c0d3b71b609432"
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
