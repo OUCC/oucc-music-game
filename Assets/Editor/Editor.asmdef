@@ -1,0 +1,18 @@
+{
+    "name": "Editor",
+    "rootNamespace": "OUCC.MusicGame",
+    "references": [
+        "GUID:57e5072583623de458a1a144bf841ad4"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
