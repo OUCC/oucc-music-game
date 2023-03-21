@@ -1,0 +1,134 @@
+{
+    "name": "MainControls",
+    "maps": [
+        {
+            "name": "Lane",
+            "id": "192b1e1a-4e2b-4ef7-b828-1f4986539795",
+            "actions": [
+                {
+                    "name": "Left1",
+                    "type": "Value",
+                    "id": "e8659987-38be-412c-a2a8-591dcf3fc3a9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Left2",
+                    "type": "Button",
+                    "id": "0a3f4c2b-2918-4185-a5df-abcaa4780659",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MidLeft",
+                    "type": "Button",
+                    "id": "553f0412-7d9c-47ef-b400-126a9d9826a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MidRight",
+                    "type": "Button",
+                    "id": "478aaa6e-4004-45ce-a4c7-ad8151c237f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right2",
+                    "type": "Button",
+                    "id": "ba19d5e2-bb15-4248-93a0-ccd66e643721",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right1",
+                    "type": "Button",
+                    "id": "b16a7547-8beb-4b1b-b12f-f69832513355",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "373c9706-ab9c-49fe-9fd1-63ca0a106251",
+                    "path": "<Keyboard>/#(S)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47cb3fc9-4cf8-4ba2-8f0c-86670af6b3f2",
+                    "path": "<Keyboard>/#(D)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8afdd00-1600-4a91-9056-6702703a46ad",
+                    "path": "<Keyboard>/#(F)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MidLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "835206b8-2e50-4ba0-be96-1f826b1f7a0b",
+                    "path": "<Keyboard>/#(J)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MidRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95940472-1607-4046-a2d1-f01d0a368f58",
+                    "path": "<Keyboard>/#(K)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8aeecaf1-dc8d-4847-842b-facc59ae87cf",
+                    "path": "<Keyboard>/#(L)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

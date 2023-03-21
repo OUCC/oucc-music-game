@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -9,9 +10,8 @@ namespace OUCC.MusicGame.Manager
     {
         public static ScoreManager Instance = new();
 
-        private int _musicId;
 
-        private MusicInfoContainer _container;
+        private MusicNotesContainer _container;
 
         public int TotalScore { get; private set; }
 
@@ -33,12 +33,16 @@ namespace OUCC.MusicGame.Manager
 
         public NoteEntity[] Initialize()
         {
-            var path = string.Empty;
-            //TODO
-            _container = JsonUtility.FromJson<MusicInfoContainer>(null);
-            CurrentScore = 0;
-            TotalScore = _container.Notes.Length * CalculateScore(Grade.Perfect);
+            var music = ConfigManager.Instance.CurrentMusic;
+            if (File.Exists(music.Path))
+            {
+                var content = File.ReadAllText(music.Path);
+                _container = JsonUtility.FromJson<MusicNotesContainer>(content);
+                CurrentScore = 0;
+                TotalScore = _container.Notes.Length * CalculateScore(Grade.Perfect);
 
+                return _container.Notes;
+            }
             return _container.Notes;
         }
 
@@ -47,8 +51,7 @@ namespace OUCC.MusicGame.Manager
         /// </summary>
         public void Reset()
         {
-            _musicId = -1;
-            _container = null;
+            _container = MusicNotesContainer.Empty;
             CurrentScore = -1;
             TotalScore = -1;
             MaxCombo = -1;
