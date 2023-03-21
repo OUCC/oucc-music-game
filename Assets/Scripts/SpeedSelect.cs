@@ -10,25 +10,25 @@ namespace OUCC.MusicGame
         // Start is called before the first frame update
         void Start()
         {
-            SpeedText.text =  Speed.ToString("F"); 
+            SpeedText.text = Speed.ToString("F");
         }
 
         // Update is called once per frame
         void Update()
         {
-            if(Input.GetKeyUp(KeyCode.RightArrow))
+            if (Input.GetKeyUp(KeyCode.RightArrow))
             {
                 Speed += 0.1;
-                SpeedText.text =  Speed.ToString("F");
+                SpeedText.text = Speed.ToString("F");
             }
 
-            if(Input.GetKeyUp(KeyCode.LeftArrow))
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
             {
                 Speed -= 0.1;
-                SpeedText.text =  Speed.ToString("F");
+                SpeedText.text = Speed.ToString("F");
             }
 
-        
+
         }
     }
 }

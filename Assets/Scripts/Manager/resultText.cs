@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using TMPro;
 
@@ -21,7 +20,7 @@ namespace OUCC.MusicGame.Manager
         [SerializeField] private TextMeshProUGUI GoodText;
         [SerializeField] private TextMeshProUGUI BadText;
         [SerializeField] private TextMeshProUGUI MissText;
-        
+
         // Start is called before the first frame update
         void Start()
         {
@@ -32,39 +31,39 @@ namespace OUCC.MusicGame.Manager
             BadText.text = "bad : " + counts.Bad.ToString();
             MissText.text = "miss : " + counts.Miss.ToString();
 
-            
+
             var currentScore = ScoreManager.Instance.CurrentScore;
             var maxcombo = ScoreManager.Instance.MaxCombo;
             ScoreText.text = "score  : " + currentScore.ToString();
-            ComboText.text  = "combo : " + maxcombo.ToString();
+            ComboText.text = "combo : " + maxcombo.ToString();
 
-        
+
             string rank = RankJudge();
             RankText.text = rank;
-            
+
         }
-        
+
 
         //Rankの決定
         public string RankJudge()
         {
             var totalScore = ScoreManager.Instance.TotalScore;
             var currentScore = (float)ScoreManager.Instance.CurrentScore;
-            var score_rate = currentScore/totalScore;
+            var score_rate = currentScore / totalScore;
 
             if (score_rate >= 0.9)
             {
-                 return "S";
+                return "S";
             }
             else if (score_rate >= 0.8)
             {
                 return "A";
             }
-            else if (score_rate >=0.7)
+            else if (score_rate >= 0.7)
             {
                 return "B";
             }
-            else 
+            else
             {
                 return "C";
             }
