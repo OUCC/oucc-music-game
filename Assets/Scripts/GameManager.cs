@@ -22,6 +22,9 @@ namespace OUCC.MusicGame
         [SerializeField, InspectorOnly]
         private TextMeshProUGUI _comboText;
 
+        [SerializeField, InspectorOnly]
+        private TextMeshProUGUI _gradeResultText;
+
         private PlayerInput _playerInput;
 
         private NoteObject[] _noteObjects;
@@ -36,13 +39,14 @@ namespace OUCC.MusicGame
             _playerInput = GetComponent<PlayerInput>();
             LoadNotes();
 
+            _gradeResultText.text = "";
             _playerInput.onActionTriggered += OnMainInput;
         }
 
         private void OnDestroy()
         {
             _playerInput.onActionTriggered -= OnMainInput;
-            foreach(var note in _noteObjects)
+            foreach (var note in _noteObjects)
             {
                 note.Controller.NoteMiss -= ControllerNoteMiss;
             }
@@ -67,7 +71,9 @@ namespace OUCC.MusicGame
         {
             ScoreManager.Instance.OnMiss(noteId);
             UpdateText();
-            _noteObjects.First(n => n.NoteId == noteId).Controller.NoteDestroy();
+            var controller = _noteObjects.First(n => n.NoteId == noteId).Controller;
+            controller.NoteMiss -= ControllerNoteMiss;
+            controller.NoteDestroy();
         }
 
         private Vector3 CalculateNotePosition(NoteEntity note)
@@ -96,6 +102,31 @@ namespace OUCC.MusicGame
         {
             _scoreText.text = ScoreManager.Instance.CurrentScore.ToString().PadLeft(8, ' ');
             _comboText.text = $"{ScoreManager.Instance.CurrentComboCount} Combo";
+        }
+
+        public void UpdateGradeText(Grade grade)
+        {
+            switch (grade)
+            {
+                case Grade.None:
+                    _gradeResultText.text = "";
+                    break;
+                case Grade.Perfect:
+                    _gradeResultText.text = "Perfect";
+                    break;
+                case Grade.Great:
+                    _gradeResultText.text = "Great";
+                    break;
+                case Grade.Good:
+                    _gradeResultText.text = "Good";
+                    break;
+                case Grade.Bad:
+                    _gradeResultText.text = "Bad";
+                    break;
+                case Grade.Miss:
+                    _gradeResultText.text = "Miss";
+                    break;
+            }
         }
 
         public void StartPlay()
@@ -132,13 +163,11 @@ namespace OUCC.MusicGame
 
             var (id, grade) = ScoreManager.Instance.OnTap(lanePosition, 1);
 
-            var note = _noteObjects.FirstOrDefault(x => x.NoteId == id);
-
-            if (note is null)
-                return;
+            var note = _noteObjects.First(x => x.NoteId == id);
 
             note.Controller.NoteDestroy();
             note.Controller.NoteMiss -= ControllerNoteMiss;
+            UpdateGradeText(grade);
             UpdateText();
         }
     }
