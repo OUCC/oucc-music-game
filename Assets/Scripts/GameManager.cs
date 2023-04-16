@@ -29,11 +29,6 @@ namespace OUCC.MusicGame
 
         private NoteObject[] _noteObjects;
 
-        /// <summary>
-        /// 1秒あたりに進む速度
-        /// </summary>
-        private float _speed = 2f;
-
         private void Start()
         {
             _playerInput = GetComponent<PlayerInput>();
@@ -52,9 +47,12 @@ namespace OUCC.MusicGame
             }
         }
 
+        /// <summary>
+        /// ノーツを取得し、配置します
+        /// </summary>
         public void LoadNotes()
         {
-            NoteOrigin.GetComponent<NoteContoroler>().NoteVelocity = _speed;
+            NoteOrigin.GetComponent<NoteContoroler>().NoteVelocity = ConfigManager.Instance.Speed;
 
             var notes = ScoreManager.Instance.Initialize();
 
@@ -67,6 +65,9 @@ namespace OUCC.MusicGame
             }
         }
 
+        /// <summary>
+        /// 失敗したeventを受け取ります
+        /// </summary>
         private void ControllerNoteMiss(int noteId)
         {
             ScoreManager.Instance.OnMiss(noteId);
@@ -76,6 +77,9 @@ namespace OUCC.MusicGame
             controller.NoteDestroy();
         }
 
+        /// <summary>
+        /// レーンの位置を取得します
+        /// </summary>
         private Vector3 CalculateNotePosition(NoteEntity note)
         {
             switch (note.Type)
@@ -89,21 +93,27 @@ namespace OUCC.MusicGame
                         LanePosition.MidRight => _lanePoint.NoteLanePoint[3],
                         LanePosition.Right2 => _lanePoint.NoteLanePoint[4],
                         LanePosition.Right1 => _lanePoint.NoteLanePoint[5],
-                        _ => throw new NotImplementedException(),
+                        _ => throw new NotSupportedException(),
                     };
-                    lane.z += _speed * 1000 * note.StartTime;
+                    lane.z += ConfigManager.Instance.Speed * 1000 * note.StartTime;
                     return lane;
                 default:
                     throw new NotSupportedException();
             }
         }
 
+        /// <summary>
+        /// スコテキストとコンボテキストを更新します
+        /// </summary>
         public void UpdateText()
         {
             _scoreText.text = ScoreManager.Instance.CurrentScore.ToString().PadLeft(8, ' ');
-            _comboText.text = $"{ScoreManager.Instance.CurrentComboCount} Combo";
+            _comboText.text = ScoreManager.Instance.CurrentComboCount.ToString();
         }
 
+        /// <summary>
+        /// 評価を表示します
+        /// </summary>
         public void UpdateGradeText(Grade grade)
         {
             switch (grade)
@@ -129,11 +139,18 @@ namespace OUCC.MusicGame
             }
         }
 
+        /// <summary>
+        /// 再生を開始します
+        /// </summary>
         public void StartPlay()
         {
-
+            // 音楽がそもそもないので未実装
+            throw new NotSupportedException();
         }
 
+        /// <summary>
+        /// キーインプットを受け取ります
+        /// </summary>
         private void OnMainInput(InputAction.CallbackContext context)
         {
             LanePosition lanePosition;
