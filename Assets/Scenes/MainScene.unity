@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 58516316}
   - component: {fileID: 58516315}
   m_Layer: 0
-  m_Name: LaneDivide
+  m_Name: LaneDivide(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 120306089}
   - component: {fileID: 120306088}
   m_Layer: 0
-  m_Name: LaneDivide
+  m_Name: LaneDivide(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 212444769}
   - component: {fileID: 212444768}
   m_Layer: 0
-  m_Name: Note (4)
+  m_Name: NoteCheckPoint(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 650798875}
   - component: {fileID: 650798874}
   m_Layer: 0
-  m_Name: LaneDivide
+  m_Name: LaneDivide(4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 659359407}
   - component: {fileID: 659359406}
   m_Layer: 0
-  m_Name: Note (3)
+  m_Name: NoteCheckPoint(2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1179,7 +1179,7 @@ GameObject:
   - component: {fileID: 742901612}
   - component: {fileID: 742901611}
   m_Layer: 0
-  m_Name: Note (6)
+  m_Name: NoteCheckPoint(5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 899932582}
   - component: {fileID: 899932581}
   m_Layer: 0
-  m_Name: Note (2)
+  m_Name: NoteCheckPoint(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1593,7 +1593,7 @@ GameObject:
   - component: {fileID: 902708423}
   - component: {fileID: 902708422}
   m_Layer: 0
-  m_Name: LaneDivide
+  m_Name: LaneDivide(2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1774,7 +1774,7 @@ GameObject:
   - component: {fileID: 964782792}
   - component: {fileID: 964782791}
   m_Layer: 0
-  m_Name: LaneDivide
+  m_Name: LaneDivide(6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2388,7 +2388,7 @@ GameObject:
   - component: {fileID: 1320093036}
   - component: {fileID: 1320093035}
   m_Layer: 0
-  m_Name: LaneDivide
+  m_Name: LaneDivide(5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2527,7 +2527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1513646747}
   m_Layer: 0
-  m_Name: CheckLine
+  m_Name: NoteCheckLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2746,7 +2746,7 @@ GameObject:
   - component: {fileID: 1756096060}
   - component: {fileID: 1756096059}
   m_Layer: 0
-  m_Name: Note (5)
+  m_Name: NoteCheckPoint(4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2862,7 +2862,7 @@ GameObject:
   - component: {fileID: 1822196740}
   - component: {fileID: 1822196739}
   m_Layer: 0
-  m_Name: NoteLane
+  m_Name: NoteLane(0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2959,7 +2959,7 @@ GameObject:
   - component: {fileID: 1987815052}
   - component: {fileID: 1987815051}
   m_Layer: 0
-  m_Name: LaneDivide
+  m_Name: LaneDivide(0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3475,7 +3475,7 @@ GameObject:
   - component: {fileID: 5670702796511417701}
   - component: {fileID: 562766960102201093}
   m_Layer: 0
-  m_Name: Note (1)
+  m_Name: NoteCheckPoint(0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
