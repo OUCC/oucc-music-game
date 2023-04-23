@@ -10,15 +10,26 @@ namespace OUCC.MusicGame.Manager
     {
         public static ScoreManager Instance = new();
 
-
         private MusicNotesContainer _container;
 
+        /// <summary>
+        /// スコアの最大値
+        /// </summary>
         public int TotalScore { get; private set; }
 
+        /// <summary>
+        /// 最大コンボ数
+        /// </summary>
         public int MaxCombo { get; private set; }
 
+        /// <summary>
+        /// 現在のスコア
+        /// </summary>
         public int CurrentScore { get; private set; }
 
+        /// <summary>
+        /// 現在のコンボ数
+        /// </summary>
         public int CurrentComboCount
         {
             get => _currentComboCount;
@@ -31,6 +42,9 @@ namespace OUCC.MusicGame.Manager
         }
         private int _currentComboCount;
 
+        /// <summary>
+        /// ノーツを保存しているJSONを読み込んで初期化します
+        /// </summary>
         public NoteEntity[] Initialize()
         {
             var music = ConfigManager.Instance.CurrentMusic;

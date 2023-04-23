@@ -6,12 +6,26 @@ using UnityEngine;
 
 namespace OUCC.MusicGame.Manager
 {
+    /// <summary>
+    /// 現在の設定を示します
+    /// </summary>
     public class ConfigManager
     {
         public static readonly ConfigManager Instance = new();
 
+        /// <summary>
+        /// 現在選択されている音楽
+        /// </summary>
         public MusicEntity CurrentMusic { get; private set; }
 
+        /// <summary>
+        /// 1秒あたりに進む速度
+        /// </summary>
+        public float Speed { get; set; }
+
+        /// <summary>
+        /// ゲーム全体の情報
+        /// </summary>
         public GameConfig GameConfig { get; private set; }
 
         public ConfigManager()
@@ -41,6 +55,10 @@ namespace OUCC.MusicGame.Manager
             }
         }
 
+        /// <summary>
+        /// 音楽IDをセットしようとします
+        /// </summary>
+        /// <returns>該当する音楽がないときfalse</returns>
         public bool TrySetMusic(int id)
         {
             var music = GameConfig.Musics.FirstOrDefault(m => m.Id == id);
@@ -51,6 +69,9 @@ namespace OUCC.MusicGame.Manager
             return true;
         }
 
+        /// <summary>
+        /// データを保存する
+        /// </summary>
         public void Save(bool prettyPrint = false)
         {
 #if UNITY_EDITOR
