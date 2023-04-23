@@ -18,10 +18,10 @@ using UnityEngine.InputSystem.Utilities;
 
 namespace OUCC.MusicGame.InputSystem
 {
-    public partial class @SpeedManager : IInputActionCollection2, IDisposable
+    public partial class @StartControlls : IInputActionCollection2, IDisposable
     {
         public InputActionAsset asset { get; }
-        public @SpeedManager()
+        public @StartControlls()
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""StartControls"",
@@ -152,8 +152,8 @@ namespace OUCC.MusicGame.InputSystem
         private readonly InputAction m_Speed_SpeedDown;
         public struct SpeedActions
         {
-            private @SpeedManager m_Wrapper;
-            public SpeedActions(@SpeedManager wrapper) { m_Wrapper = wrapper; }
+            private @StartControlls m_Wrapper;
+            public SpeedActions(@StartControlls wrapper) { m_Wrapper = wrapper; }
             public InputAction @SpeedUp => m_Wrapper.m_Speed_SpeedUp;
             public InputAction @SpeedDown => m_Wrapper.m_Speed_SpeedDown;
             public InputActionMap Get() { return m_Wrapper.m_Speed; }
