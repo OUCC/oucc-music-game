@@ -16,28 +16,14 @@ namespace OUCC.MusicGame
         {
             startControls = new StartControls();
             startControls.Enable();
-            startControls.Speed.SpeedUp.started += context => speed += 0.1;
-            startControls.Speed.SpeedDown.started += context => speed -= 0.1;
-
+            startControls.Speed.SpeedUp.started += context => { speed += 0.1; speedText.text = speed.ToString("F"); };
+            startControls.Speed.SpeedDown.started += context => { if (speed >= 0.1) { speed -= 0.1; speedText.text = speed.ToString("F"); } };
         }
-
-
         //初期の速度表示
         void Start()
         {
             speedText.text = speed.ToString("F");
         }
-
-        //rightArrowキーを押したら速度が+0.1、leftArrowキーを押すと速度が-0.1
-        void Update()
-        {
-            if (speed < 0.0)
-            {
-                speed += 0.1;
-            }
-            speedText.text = speed.ToString("F");
-        }
-
 
     }
 }
