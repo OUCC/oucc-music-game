@@ -15,12 +15,14 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @StartControls: IInputActionCollection2, IDisposable
+namespace OUCC.MusicGame.InputSystem
 {
-    public InputActionAsset asset { get; }
-    public @StartControls()
+    public partial class @StartControls : IInputActionCollection2, IDisposable
     {
-        asset = InputActionAsset.FromJson(@"{
+        public InputActionAsset asset { get; }
+        public @StartControls()
+        {
+            asset = InputActionAsset.FromJson(@"{
     ""name"": ""StartControls"",
     ""maps"": [
         {
@@ -74,124 +76,125 @@ public partial class @StartControls: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
+            // Speed
+            m_Speed = asset.FindActionMap("Speed", throwIfNotFound: true);
+            m_Speed_SpeedUp = m_Speed.FindAction("SpeedUp", throwIfNotFound: true);
+            m_Speed_SpeedDown = m_Speed.FindAction("SpeedDown", throwIfNotFound: true);
+        }
+
+        public void Dispose()
+        {
+            UnityEngine.Object.Destroy(asset);
+        }
+
+        public InputBinding? bindingMask
+        {
+            get => asset.bindingMask;
+            set => asset.bindingMask = value;
+        }
+
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => asset.devices;
+            set => asset.devices = value;
+        }
+
+        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+        public bool Contains(InputAction action)
+        {
+            return asset.Contains(action);
+        }
+
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return asset.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Enable()
+        {
+            asset.Enable();
+        }
+
+        public void Disable()
+        {
+            asset.Disable();
+        }
+
+        public IEnumerable<InputBinding> bindings => asset.bindings;
+
+        public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
+        {
+            return asset.FindAction(actionNameOrId, throwIfNotFound);
+        }
+
+        public int FindBinding(InputBinding bindingMask, out InputAction action)
+        {
+            return asset.FindBinding(bindingMask, out action);
+        }
+
         // Speed
-        m_Speed = asset.FindActionMap("Speed", throwIfNotFound: true);
-        m_Speed_SpeedUp = m_Speed.FindAction("SpeedUp", throwIfNotFound: true);
-        m_Speed_SpeedDown = m_Speed.FindAction("SpeedDown", throwIfNotFound: true);
-    }
-
-    public void Dispose()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
-
-    public InputBinding? bindingMask
-    {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
-    }
-
-    public ReadOnlyArray<InputDevice>? devices
-    {
-        get => asset.devices;
-        set => asset.devices = value;
-    }
-
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-    public bool Contains(InputAction action)
-    {
-        return asset.Contains(action);
-    }
-
-    public IEnumerator<InputAction> GetEnumerator()
-    {
-        return asset.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public void Enable()
-    {
-        asset.Enable();
-    }
-
-    public void Disable()
-    {
-        asset.Disable();
-    }
-
-    public IEnumerable<InputBinding> bindings => asset.bindings;
-
-    public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
-    {
-        return asset.FindAction(actionNameOrId, throwIfNotFound);
-    }
-
-    public int FindBinding(InputBinding bindingMask, out InputAction action)
-    {
-        return asset.FindBinding(bindingMask, out action);
-    }
-
-    // Speed
-    private readonly InputActionMap m_Speed;
-    private List<ISpeedActions> m_SpeedActionsCallbackInterfaces = new List<ISpeedActions>();
-    private readonly InputAction m_Speed_SpeedUp;
-    private readonly InputAction m_Speed_SpeedDown;
-    public struct SpeedActions
-    {
-        private @StartControls m_Wrapper;
-        public SpeedActions(@StartControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @SpeedUp => m_Wrapper.m_Speed_SpeedUp;
-        public InputAction @SpeedDown => m_Wrapper.m_Speed_SpeedDown;
-        public InputActionMap Get() { return m_Wrapper.m_Speed; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(SpeedActions set) { return set.Get(); }
-        public void AddCallbacks(ISpeedActions instance)
+        private readonly InputActionMap m_Speed;
+        private List<ISpeedActions> m_SpeedActionsCallbackInterfaces = new List<ISpeedActions>();
+        private readonly InputAction m_Speed_SpeedUp;
+        private readonly InputAction m_Speed_SpeedDown;
+        public struct SpeedActions
         {
-            if (instance == null || m_Wrapper.m_SpeedActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_SpeedActionsCallbackInterfaces.Add(instance);
-            @SpeedUp.started += instance.OnSpeedUp;
-            @SpeedUp.performed += instance.OnSpeedUp;
-            @SpeedUp.canceled += instance.OnSpeedUp;
-            @SpeedDown.started += instance.OnSpeedDown;
-            @SpeedDown.performed += instance.OnSpeedDown;
-            @SpeedDown.canceled += instance.OnSpeedDown;
-        }
+            private @StartControls m_Wrapper;
+            public SpeedActions(@StartControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @SpeedUp => m_Wrapper.m_Speed_SpeedUp;
+            public InputAction @SpeedDown => m_Wrapper.m_Speed_SpeedDown;
+            public InputActionMap Get() { return m_Wrapper.m_Speed; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(SpeedActions set) { return set.Get(); }
+            public void AddCallbacks(ISpeedActions instance)
+            {
+                if (instance == null || m_Wrapper.m_SpeedActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_SpeedActionsCallbackInterfaces.Add(instance);
+                @SpeedUp.started += instance.OnSpeedUp;
+                @SpeedUp.performed += instance.OnSpeedUp;
+                @SpeedUp.canceled += instance.OnSpeedUp;
+                @SpeedDown.started += instance.OnSpeedDown;
+                @SpeedDown.performed += instance.OnSpeedDown;
+                @SpeedDown.canceled += instance.OnSpeedDown;
+            }
 
-        private void UnregisterCallbacks(ISpeedActions instance)
-        {
-            @SpeedUp.started -= instance.OnSpeedUp;
-            @SpeedUp.performed -= instance.OnSpeedUp;
-            @SpeedUp.canceled -= instance.OnSpeedUp;
-            @SpeedDown.started -= instance.OnSpeedDown;
-            @SpeedDown.performed -= instance.OnSpeedDown;
-            @SpeedDown.canceled -= instance.OnSpeedDown;
-        }
+            private void UnregisterCallbacks(ISpeedActions instance)
+            {
+                @SpeedUp.started -= instance.OnSpeedUp;
+                @SpeedUp.performed -= instance.OnSpeedUp;
+                @SpeedUp.canceled -= instance.OnSpeedUp;
+                @SpeedDown.started -= instance.OnSpeedDown;
+                @SpeedDown.performed -= instance.OnSpeedDown;
+                @SpeedDown.canceled -= instance.OnSpeedDown;
+            }
 
-        public void RemoveCallbacks(ISpeedActions instance)
-        {
-            if (m_Wrapper.m_SpeedActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
+            public void RemoveCallbacks(ISpeedActions instance)
+            {
+                if (m_Wrapper.m_SpeedActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
 
-        public void SetCallbacks(ISpeedActions instance)
-        {
-            foreach (var item in m_Wrapper.m_SpeedActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_SpeedActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
+            public void SetCallbacks(ISpeedActions instance)
+            {
+                foreach (var item in m_Wrapper.m_SpeedActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_SpeedActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
         }
-    }
-    public SpeedActions @Speed => new SpeedActions(this);
-    public interface ISpeedActions
-    {
-        void OnSpeedUp(InputAction.CallbackContext context);
-        void OnSpeedDown(InputAction.CallbackContext context);
+        public SpeedActions @Speed => new SpeedActions(this);
+        public interface ISpeedActions
+        {
+            void OnSpeedUp(InputAction.CallbackContext context);
+            void OnSpeedDown(InputAction.CallbackContext context);
+        }
     }
 }
