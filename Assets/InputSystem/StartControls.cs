@@ -15,9 +15,9 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace OUCC.MusicGame.InputSystem
+namespace OUCC.MusicGame
 {
-    public partial class @StartControls : IInputActionCollection2, IDisposable
+    public partial class @StartControls: IInputActionCollection2, IDisposable
     {
         public InputActionAsset asset { get; }
         public @StartControls()

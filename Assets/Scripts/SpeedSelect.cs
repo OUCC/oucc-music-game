@@ -1,78 +1,43 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using TMPro;
 
 namespace OUCC.MusicGame
 {
-    [RequireComponent(typeof(PlayerInput))]
     public class SpeedSelect : MonoBehaviour
     {
         //速度表示
-        [SerializeField] private TextMeshProUGUI SpeedText;
+        [SerializeField] private TextMeshProUGUI speedText;
         //速度
-        private double Speed = 1.0;
+        private double speed = 1.0;
 
-        private PlayerInput _playerInput;
+        StartControls startControls;
 
         private void Awake()
         {
-            //PlayerInputのインスタンスを取得
-            _playerInput = GetComponent<PlayerInput>();
-        }
-        private void OnEnable()
-        {
-            if (_playerInput == null) return;
+            startControls = new StartControls();
+            startControls.Enable();
+            startControls.Speed.SpeedUp.started += context => speed += 0.1;
+            startControls.Speed.SpeedDown.started += context => speed -= 0.1;
 
-            // デリゲート登録
-            _playerInput.onActionTriggered += OnSpeedUp;
-            _playerInput.onActionTriggered += OnSpeedDown;
-        }
-
-        private void OnDisable()
-        {
-            if (_playerInput == null) return;
-
-            // デリゲート登録解除
-            _playerInput.onActionTriggered -= OnSpeedUp;
-            _playerInput.onActionTriggered -= OnSpeedDown;
         }
 
 
         //初期の速度表示
         void Start()
         {
-            SpeedText.text = Speed.ToString("F");
+            speedText.text = speed.ToString("F");
         }
 
-        //rightArrowキーを押した時速度を0.1上げる
-        public void OnSpeedUp(InputAction.CallbackContext context)
+        //rightArrowキーを押したら速度が+0.1、leftArrowキーを押すと速度が-0.1
+        void Update()
         {
-
-            // SpeedUp以外は処理しない
-            if (context.action.name != "SpeedUp") return;
-
-            //押された瞬間に動作
-            if (!context.started) return;
-
-            Speed += 0.1;
-            SpeedText.text = Speed.ToString("F");
-
-        }
-        //rightArrowキーを押した時速度を0.1上げる
-        public void OnSpeedDown(InputAction.CallbackContext context)
-        {
-            if (Speed >= 0.1)
+            if (speed < 0.0)
             {
-                // SpeedDown以外は処理しない
-                if (context.action.name != "SpeedDown") return;
-
-                //押された瞬間に動作
-                if (!context.started) return;
-
-                Speed -= 0.1;
-                SpeedText.text = Speed.ToString("F");
+                speed += 0.1;
             }
-
+            speedText.text = speed.ToString("F");
         }
+
+
     }
 }
