@@ -5,30 +5,34 @@ namespace OUCC.MusicGame
 {
     public class SpeedSelect : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI SpeedText;
-        private double Speed = 1.0;
-        // Start is called before the first frame update
+        //速度表示
+        [SerializeField] private TextMeshProUGUI speedText;
+        //速度
+        private double speed = 1.0;
+
+        StartControls startControls;
+
+        private void Awake()
+        {
+            startControls = new StartControls();
+            startControls.Enable();
+            startControls.Speed.SpeedUp.started += context =>
+            {
+                speed += 0.1; speedText.text = speed.ToString("F");
+            };
+            startControls.Speed.SpeedDown.started += context =>
+            {
+                if (speed >= 0.1)
+                {
+                    speed -= 0.1; speedText.text = speed.ToString("F");
+                }
+            };
+        }
+        //初期の速度表示
         void Start()
         {
-            SpeedText.text = Speed.ToString("F");
+            speedText.text = speed.ToString("F");
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (Input.GetKeyUp(KeyCode.RightArrow))
-            {
-                Speed += 0.1;
-                SpeedText.text = Speed.ToString("F");
-            }
-
-            if (Input.GetKeyUp(KeyCode.LeftArrow))
-            {
-                Speed -= 0.1;
-                SpeedText.text = Speed.ToString("F");
-            }
-
-
-        }
     }
 }
