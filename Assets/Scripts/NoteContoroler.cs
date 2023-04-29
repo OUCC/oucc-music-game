@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace OUCC.MusicGame
 {
@@ -35,6 +36,9 @@ namespace OUCC.MusicGame
         /// </summary>
         [NonSerialized]
         public float NoteEndTime;
+
+        [SerializeField]
+        private ParticleSystem _noteParticle;
 
         private float _noteNowTime;//ノーツがアウトラインをこえてから現在までの時間
         private MeshRenderer _noteRenderer;//ノーツのRenderer、非表示にする用
@@ -72,6 +76,13 @@ namespace OUCC.MusicGame
         {
             _noteRenderer.enabled = false;
             _isNoteEnd = true;
+        }
+        /// <summary>
+        /// パーフェクトが出たときにノーツから生じるエフェクト
+        /// </summary>
+        public void NoteEffect()
+        {
+            _noteParticle.Play();
         }
     }
 }
