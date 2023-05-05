@@ -152,94 +152,6 @@ namespace OUCC.MusicGame.InputSystem
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""CreateChart"",
-            ""id"": ""371d005d-ab3c-4c35-baca-5a1f52ab167e"",
-            ""actions"": [
-                {
-                    ""name"": ""StartStop"",
-                    ""type"": ""Button"",
-                    ""id"": ""adcb8bb9-ffc4-45bb-bf88-f9303fd009a2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Back"",
-                    ""type"": ""Button"",
-                    ""id"": ""90cee988-5e42-4b91-99b0-1e2f82a43e38"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Skip"",
-                    ""type"": ""Button"",
-                    ""id"": ""6a124021-58ad-4865-af3b-2b766dc6c145"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Reload"",
-                    ""type"": ""Button"",
-                    ""id"": ""9994e6be-36bf-4220-87fb-59f52852ada7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""6d5e414e-79c9-475f-bb18-a184362d247d"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""StartStop"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""922587f5-40ac-4479-b115-b8e9b6275a62"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Back"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1ebffd23-6c8e-4dc7-a635-e514809622d0"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skip"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d69a5c88-45e0-4eb3-aa22-eca27c408efe"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Reload"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
@@ -252,12 +164,6 @@ namespace OUCC.MusicGame.InputSystem
             m_Lane_MidRight = m_Lane.FindAction("MidRight", throwIfNotFound: true);
             m_Lane_Right2 = m_Lane.FindAction("Right2", throwIfNotFound: true);
             m_Lane_Right1 = m_Lane.FindAction("Right1", throwIfNotFound: true);
-            // CreateChart
-            m_CreateChart = asset.FindActionMap("CreateChart", throwIfNotFound: true);
-            m_CreateChart_StartStop = m_CreateChart.FindAction("StartStop", throwIfNotFound: true);
-            m_CreateChart_Back = m_CreateChart.FindAction("Back", throwIfNotFound: true);
-            m_CreateChart_Skip = m_CreateChart.FindAction("Skip", throwIfNotFound: true);
-            m_CreateChart_Reload = m_CreateChart.FindAction("Reload", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -401,76 +307,6 @@ namespace OUCC.MusicGame.InputSystem
             }
         }
         public LaneActions @Lane => new LaneActions(this);
-
-        // CreateChart
-        private readonly InputActionMap m_CreateChart;
-        private List<ICreateChartActions> m_CreateChartActionsCallbackInterfaces = new List<ICreateChartActions>();
-        private readonly InputAction m_CreateChart_StartStop;
-        private readonly InputAction m_CreateChart_Back;
-        private readonly InputAction m_CreateChart_Skip;
-        private readonly InputAction m_CreateChart_Reload;
-        public struct CreateChartActions
-        {
-            private @MainControls m_Wrapper;
-            public CreateChartActions(@MainControls wrapper) { m_Wrapper = wrapper; }
-            public InputAction @StartStop => m_Wrapper.m_CreateChart_StartStop;
-            public InputAction @Back => m_Wrapper.m_CreateChart_Back;
-            public InputAction @Skip => m_Wrapper.m_CreateChart_Skip;
-            public InputAction @Reload => m_Wrapper.m_CreateChart_Reload;
-            public InputActionMap Get() { return m_Wrapper.m_CreateChart; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(CreateChartActions set) { return set.Get(); }
-            public void AddCallbacks(ICreateChartActions instance)
-            {
-                if (instance == null || m_Wrapper.m_CreateChartActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_CreateChartActionsCallbackInterfaces.Add(instance);
-                @StartStop.started += instance.OnStartStop;
-                @StartStop.performed += instance.OnStartStop;
-                @StartStop.canceled += instance.OnStartStop;
-                @Back.started += instance.OnBack;
-                @Back.performed += instance.OnBack;
-                @Back.canceled += instance.OnBack;
-                @Skip.started += instance.OnSkip;
-                @Skip.performed += instance.OnSkip;
-                @Skip.canceled += instance.OnSkip;
-                @Reload.started += instance.OnReload;
-                @Reload.performed += instance.OnReload;
-                @Reload.canceled += instance.OnReload;
-            }
-
-            private void UnregisterCallbacks(ICreateChartActions instance)
-            {
-                @StartStop.started -= instance.OnStartStop;
-                @StartStop.performed -= instance.OnStartStop;
-                @StartStop.canceled -= instance.OnStartStop;
-                @Back.started -= instance.OnBack;
-                @Back.performed -= instance.OnBack;
-                @Back.canceled -= instance.OnBack;
-                @Skip.started -= instance.OnSkip;
-                @Skip.performed -= instance.OnSkip;
-                @Skip.canceled -= instance.OnSkip;
-                @Reload.started -= instance.OnReload;
-                @Reload.performed -= instance.OnReload;
-                @Reload.canceled -= instance.OnReload;
-            }
-
-            public void RemoveCallbacks(ICreateChartActions instance)
-            {
-                if (m_Wrapper.m_CreateChartActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(ICreateChartActions instance)
-            {
-                foreach (var item in m_Wrapper.m_CreateChartActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_CreateChartActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public CreateChartActions @CreateChart => new CreateChartActions(this);
         public interface ILaneActions
         {
             void OnLeft1(InputAction.CallbackContext context);
@@ -479,13 +315,6 @@ namespace OUCC.MusicGame.InputSystem
             void OnMidRight(InputAction.CallbackContext context);
             void OnRight2(InputAction.CallbackContext context);
             void OnRight1(InputAction.CallbackContext context);
-        }
-        public interface ICreateChartActions
-        {
-            void OnStartStop(InputAction.CallbackContext context);
-            void OnBack(InputAction.CallbackContext context);
-            void OnSkip(InputAction.CallbackContext context);
-            void OnReload(InputAction.CallbackContext context);
         }
     }
 }
