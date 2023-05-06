@@ -461,7 +461,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7424098105228656718, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_Name
-      value: NoteLane (0)
+      value: RightRightLane
       objectReference: {fileID: 0}
     - target: {fileID: 7424098105228656719, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_RootOrder
@@ -606,7 +606,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7424098105228656718, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_Name
-      value: NoteLane (1)
+      value: RightMidLane
       objectReference: {fileID: 0}
     - target: {fileID: 7424098105228656719, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_RootOrder
@@ -673,7 +673,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7424098105228656718, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_Name
-      value: NoteLane (3)
+      value: LeftRightLane
       objectReference: {fileID: 0}
     - target: {fileID: 7424098105228656719, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_RootOrder
@@ -740,7 +740,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7424098105228656718, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_Name
-      value: NoteLane (2)
+      value: RightLeftLane
       objectReference: {fileID: 0}
     - target: {fileID: 7424098105228656719, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_RootOrder
@@ -1468,7 +1468,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7424098105228656718, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_Name
-      value: NoteLane (4)
+      value: LeftMidLane
       objectReference: {fileID: 0}
     - target: {fileID: 7424098105228656719, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_RootOrder
@@ -1632,7 +1632,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7424098105228656718, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_Name
-      value: NoteLane (5)
+      value: LeftLeftLane
       objectReference: {fileID: 0}
     - target: {fileID: 7424098105228656719, guid: 8d103c50a7fade64e9a8c16d3bec7af4, type: 3}
       propertyPath: m_RootOrder

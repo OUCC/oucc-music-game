@@ -87,12 +87,12 @@ namespace OUCC.MusicGame
                 case NoteType.Normal:
                     var lane = note.LanePosition switch
                     {
-                        LanePosition.Left1 => _lanePoint.NoteLanePoint[0],
-                        LanePosition.Left2 => _lanePoint.NoteLanePoint[1],
-                        LanePosition.MidLeft => _lanePoint.NoteLanePoint[2],
-                        LanePosition.MidRight => _lanePoint.NoteLanePoint[3],
-                        LanePosition.Right2 => _lanePoint.NoteLanePoint[4],
-                        LanePosition.Right1 => _lanePoint.NoteLanePoint[5],
+                        LanePosition.LeftLeft => _lanePoint.NoteLanePoint[0],
+                        LanePosition.LeftMid => _lanePoint.NoteLanePoint[1],
+                        LanePosition.LeftRight => _lanePoint.NoteLanePoint[2],
+                        LanePosition.RightLeft => _lanePoint.NoteLanePoint[3],
+                        LanePosition.RightMid => _lanePoint.NoteLanePoint[4],
+                        LanePosition.RightRight => _lanePoint.NoteLanePoint[5],
                         _ => throw new NotSupportedException(),
                     };
                     lane.z += ConfigManager.Instance.Speed * 1000 * note.StartTime;
@@ -157,22 +157,22 @@ namespace OUCC.MusicGame
             switch (context.action.name)
             {
                 case "Left1":
-                    lanePosition = LanePosition.Left1;
+                    lanePosition = LanePosition.LeftLeft;
                     break;
                 case "Left2":
-                    lanePosition = LanePosition.Left2;
+                    lanePosition = LanePosition.LeftMid;
                     break;
                 case "MidLeft":
-                    lanePosition = LanePosition.MidLeft;
+                    lanePosition = LanePosition.LeftRight;
                     break;
                 case "MidRight":
-                    lanePosition = LanePosition.MidRight;
+                    lanePosition = LanePosition.RightLeft;
                     break;
                 case "Right2":
-                    lanePosition = LanePosition.Right2;
+                    lanePosition = LanePosition.RightMid;
                     break;
                 case "Right1":
-                    lanePosition = LanePosition.Right1;
+                    lanePosition = LanePosition.RightRight;
                     break;
                 default:
                     return;
