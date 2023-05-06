@@ -47,32 +47,32 @@ namespace OUCC.MusicGame.Manager
         /// <summary>
         /// 一番左
         /// </summary>
-        Left1,
+        LeftLeft,
 
         /// <summary>
         /// 左から2番目
         /// </summary>
-        Left2,
+        LeftMid,
 
         /// <summary>
         /// 真ん中の左側
         /// </summary>
-        MidLeft,
+        LeftRight,
 
         /// <summary>
         /// 真ん中の右側
         /// </summary>
-        MidRight,
+        RightLeft,
 
         /// <summary>
         /// 右から2番目
         /// </summary>
-        Right2,
+        RightMid,
 
         /// <summary>
         /// 一番右
         /// </summary>
-        Right1,
+        RightRight,
     }
 
     public enum NoteType
