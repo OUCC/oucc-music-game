@@ -11,6 +11,8 @@ namespace OUCC.MusicGame
     {
         // Start is called before the first frame update
         MeshRenderer laneMeshRenderer;
+        const float flashTime = 0.10f;
+        const float flashColor = 160f;
         void Start()
         {
             laneMeshRenderer = GetComponent<MeshRenderer>();
@@ -23,9 +25,9 @@ namespace OUCC.MusicGame
         public void LaneFlash()
         {
             Color color = laneMeshRenderer.material.color;
-            laneMeshRenderer.material.DOColor(color * 160f, 0.10f).OnComplete(() =>
+            laneMeshRenderer.material.DOColor(color * flashColor, flashTime).OnComplete(() =>
             {
-                laneMeshRenderer.material.DOColor(color, 0.10f);
+                laneMeshRenderer.material.DOColor(color, flashTime);
             });
         }
     }
