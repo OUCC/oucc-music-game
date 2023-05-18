@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using DG.Tweening;
 
 namespace OUCC.MusicGame
 {
@@ -16,20 +17,16 @@ namespace OUCC.MusicGame
             laneMeshRenderer.material.EnableKeyword("_EMISSION");
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            var keyboard = Keyboard.current;
-            if (keyboard != null)
-            {
-                //　スペースキーの状態の取得
-                if (keyboard.spaceKey.wasPressedThisFrame)LaneFlash();
-                if (keyboard.spaceKey.wasReleasedThisFrame) Debug.Log("SpaceKey:Up");
-            }
-        }
+        /// <summary>
+        /// レーンを光らせる関数
+        /// </summary>
         public void LaneFlash()
         {
-            laneMeshRenderer.material.SetColor("_EmissionColor",new Color(0,1,0));
+            Color color = laneMeshRenderer.material.color;
+            laneMeshRenderer.material.DOColor(color * 160f, 0.10f).OnComplete(() =>
+            {
+                laneMeshRenderer.material.DOColor(color, 0.10f);
+            });
         }
     }
 }
